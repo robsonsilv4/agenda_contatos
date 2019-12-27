@@ -31,10 +31,10 @@ class ContactHelper {
     final path = join(databasePath, "contacts.db");
 
     return await openDatabase(path, version: 1, onCreate: (
-      Database db,
+      Database database,
       int newerVersion,
     ) async {
-      await db.execute(
+      await database.execute(
         "CREATE TABLE $contactTable($idColumn INTERGER PRIMARY KEY, $nameColumn TEXT, $emailColumn TEXT, $phoneColumn TEXT, $imageColumn TEXT)",
       );
     });
@@ -126,6 +126,8 @@ class Contact {
   String email;
   String phone;
   String image;
+
+  Contact();
 
   Contact.fromMap(Map map) {
     id = map[idColumn];
